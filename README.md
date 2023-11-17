@@ -9,6 +9,7 @@ It is not supposed to be totally based only on the [JavaScript Data Structures &
 * [Linked Lists](./linkedlist/linkedlist.go)
     * [Find middle node](./linkedlist/find-middle-node.go)
     * [Has loop](./linkedlist/has-loop.go)
+    * [Find kth node from end](./linkedlist/find-kth-node-from-end.go)
 
 ## Run the project
 
