@@ -1,3 +1,4 @@
+// Package main won't be used much. It's just for the sake of having some examples running on the main function.
 package main
 
 import (
@@ -16,4 +17,7 @@ func main() {
 	ll.Push(11)
 	ll.Push(12)
 	ll.Print()
+
+	middleNode := ll.FindMiddleNode()
+	fmt.Println(middleNode.Value)
 }

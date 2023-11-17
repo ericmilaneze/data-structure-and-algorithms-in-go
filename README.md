@@ -1,6 +1,18 @@
-# Linked List
+# Data Structures & Algorithms In Go
+
+This repo was created to add examples of data structures and algorithms related or not to them.
+
+It is not supposed to be totally based only on the [JavaScript Data Structures & Algorithms + LEETCODE Exercises](https://www.udemy.com/course/data-structures-algorithms-javascript) course, but this course is one of the main inspirations to start this repo. There's [this other](https://github.com/ericmilaneze/data-structures-and-algorithms-plus-leetcode-exercises) repo that is completely based on this course (all examples and exercises written in JavaScript).
+
+## Data Structures
+
+* [Linked Lists](./linkedlist/linkedlist.go)
+    * [Find middle node](./linkedlist/find-middle-node.go)
+    * [Has loop](./linkedlist/has-loop.go)
 
 ## Run the project
+
+The main file is not doing much, but there are some examples running on it.
 
 ```bash
 go run .
@@ -29,7 +41,7 @@ The public documentation can be found [here](https://pkg.go.dev/github.com/ericm
 #### How to generate the public documentation
 
 - Add a LICENSE to the repo
-- Add tags following the semantic versioning pattern (vX.X.X)
+- Add tags following the semantic versioning pattern (vX.X.X, e.g. v0.0.1)
 - Run the following command:
 ```bash
 GOPROXY=proxy.golang.org go list -m github.com/ericmilaneze/data-structure-and-algorithms-in-go@v0.1.0
@@ -37,7 +49,6 @@ GOPROXY=proxy.golang.org go list -m github.com/ericmilaneze/data-structure-and-a
 # if using Windows add SET in front of it:
 # SET GOPROXY=proxy.golang.org go list -m github.com/ericmilaneze/data-structure-and-algorithms-in-go@v0.1.0
 ```
-If using Windows
 
 ### Godoc (local)
 
