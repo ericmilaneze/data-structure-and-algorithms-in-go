@@ -212,15 +212,16 @@ func (ll *LinkedList) Reverse() {
 	ll.Head, ll.Tail = ll.Tail, ll.Head
 	ll.Tail.Next = nil
 
-	a, b, c := second, second.Next, second.Next.Next
+	curr, next := second, second.Next
 	for {
-		b.Next = a
+		temp := next.Next
+		next.Next = curr
 
-		if c == nil {
+		if temp == nil {
 			break
 		}
 
-		a, b, c = b, c, c.Next
+		curr, next = next, temp
 	}
 
 	second.Next = ll.Tail
@@ -229,19 +230,26 @@ func (ll *LinkedList) Reverse() {
 // Print shows the details of the Linked List on the screen.
 func (ll LinkedList) Print() {
 	if ll.Length > 0 {
-		currentNode := ll.Head
-
-		for currentNode != nil {
-			fmt.Print(currentNode.Value, "->")
-			currentNode = currentNode.Next
-		}
-
-		fmt.Print("nil")
-
-		fmt.Println()
+		fmt.Println(ll.SprintValues())
 		fmt.Println("Head:", ll.Head.Value)
 		fmt.Println("Tail:", ll.Tail.Value)
 	}
 
 	fmt.Println("Length:", ll.Length)
+}
+
+// SprintValues returns the values formatted like 1->2->3->nil
+func (ll LinkedList) SprintValues() string {
+	ret := []byte{}
+
+	currentNode := ll.Head
+
+	for currentNode != nil {
+		ret = fmt.Append(ret, currentNode.Value, "->")
+		currentNode = currentNode.Next
+	}
+
+	ret = fmt.Append(ret, "nil")
+
+	return string(ret)
 }
