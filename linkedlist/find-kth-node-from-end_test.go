@@ -3,12 +3,7 @@ package linkedlist
 import "testing"
 
 func TestLinkedList_FindKthNodeFromEnd(t *testing.T) {
-	ll := New(1)
-	ll.Push(2)
-	ll.Push(3)
-	ll.Push(4)
-	ll.Push(5)
-	ll.Push(6)
+	ll := FromValues(1, 2, 3, 4, 5, 6)
 
 	node := ll.FindKthNodeFromEnd(4)
 
@@ -18,11 +13,7 @@ func TestLinkedList_FindKthNodeFromEnd(t *testing.T) {
 }
 
 func TestLinkedList_FindKthNodeFromEnd_odd_length(t *testing.T) {
-	ll := New(1)
-	ll.Push(2)
-	ll.Push(3)
-	ll.Push(4)
-	ll.Push(5)
+	ll := FromValues(1, 2, 3, 4, 5)
 
 	node := ll.FindKthNodeFromEnd(2)
 
@@ -32,11 +23,7 @@ func TestLinkedList_FindKthNodeFromEnd_odd_length(t *testing.T) {
 }
 
 func TestLinkedList_FindKthNodeFromEnd_k_greater_than_length(t *testing.T) {
-	ll := New(1)
-	ll.Push(2)
-	ll.Push(3)
-	ll.Push(4)
-	ll.Push(5)
+	ll := FromValues(1, 2, 3, 4, 5)
 
 	node := ll.FindKthNodeFromEnd(6)
 

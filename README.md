@@ -10,6 +10,10 @@ It is not supposed to be totally based only on the [JavaScript Data Structures &
     * [Find middle node](./linkedlist/find-middle-node.go)
     * [Has loop](./linkedlist/has-loop.go)
     * [Find kth node from end](./linkedlist/find-kth-node-from-end.go)
+    * [Partition list](./linkedlist/partition-list.go)
+    * [Remove duplicates](./linkedlist/remove-duplicates.go)
+    * [Binary to decimal](./linkedlist/binary-to-decimal.go)
+    * [Reverse between](./linkedlist/reverse-between.go)
 
 ## Run the project
 

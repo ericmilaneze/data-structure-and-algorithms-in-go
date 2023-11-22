@@ -5,12 +5,7 @@ import (
 )
 
 func BenchmarkTestLinkedList_FindMiddleNode(b *testing.B) {
-	ll := New(1)
-	ll.Push(2)
-	ll.Push(3)
-	ll.Push(4)
-	ll.Push(5)
-	ll.Push(6)
+	ll := FromValues(1, 2, 3, 4, 5, 6)
 
 	for i := 0; i < b.N; i++ {
 		ll.FindMiddleNode()
@@ -38,11 +33,7 @@ func TestLinkedList_FindMiddleNode_one_item(t *testing.T) {
 }
 
 func TestLinkedList_FindMiddleNode_odd_length(t *testing.T) {
-	ll := New(1)
-	ll.Push(2)
-	ll.Push(3)
-	ll.Push(4)
-	ll.Push(5)
+	ll := FromValues(1, 2, 3, 4, 5)
 
 	node := ll.FindMiddleNode()
 
@@ -52,12 +43,7 @@ func TestLinkedList_FindMiddleNode_odd_length(t *testing.T) {
 }
 
 func TestLinkedList_FindMiddleNode_even_length(t *testing.T) {
-	ll := New(1)
-	ll.Push(2)
-	ll.Push(3)
-	ll.Push(4)
-	ll.Push(5)
-	ll.Push(6)
+	ll := FromValues(1, 2, 3, 4, 5, 6)
 
 	node := ll.FindMiddleNode()
 

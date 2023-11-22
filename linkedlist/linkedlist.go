@@ -35,6 +35,16 @@ func New(value int) *LinkedList {
 	return ll
 }
 
+func FromValues(values ...int) *LinkedList {
+	ll := &LinkedList{}
+
+	for _, v := range values {
+		ll.Push(v)
+	}
+
+	return ll
+}
+
 // Push adds a new node to the end of the Linked List.
 func (ll *LinkedList) Push(value int) *LinkedList {
 	n := &Node{value, nil}

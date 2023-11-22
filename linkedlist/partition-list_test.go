@@ -28,11 +28,7 @@ func TestLinkedList_PartitionList(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		ll := &LinkedList{}
-
-		for _, v := range test.values {
-			ll.Push(v)
-		}
+		ll := FromValues(test.values...)
 
 		ll.PartitionList(test.x)
 

@@ -6,11 +6,7 @@ import (
 )
 
 func Example() {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
-	ll.Push(13)
-	ll.Push(14)
+	ll := FromValues(10, 11, 12, 13, 14)
 
 	fmt.Println(ll)
 	ll.Print()
@@ -68,11 +64,7 @@ func TestNew(t *testing.T) {
 }
 
 func ExampleLinkedList_Push() {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
-	ll.Push(13)
-	ll.Push(14)
+	ll := FromValues(10, 11, 12, 13, 14)
 
 	fmt.Println(ll.Head.Value)
 	fmt.Println(ll.Tail.Value)
@@ -158,11 +150,7 @@ func TestLinkedList_Push_one_item_to_an_empty_linked_list(t *testing.T) {
 }
 
 func TestLinkedList_Pop(t *testing.T) {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
-	ll.Push(13)
-	ll.Push(14)
+	ll := FromValues(10, 11, 12, 13, 14)
 
 	n := ll.Pop()
 
@@ -192,11 +180,7 @@ func TestLinkedList_Pop(t *testing.T) {
 }
 
 func TestLinkedList_Pop_all_items(t *testing.T) {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
-	ll.Push(13)
-	ll.Push(14)
+	ll := FromValues(10, 11, 12, 13, 14)
 
 	ll.Pop()
 	ll.Pop()
@@ -283,12 +267,7 @@ func TestLinkedList_Unshift_one_item(t *testing.T) {
 }
 
 func ExampleLinkedList_Unshift() {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
-	ll.Push(13)
-	ll.Push(14)
-	ll.Push(15)
+	ll := FromValues(10, 11, 12, 13, 14, 15)
 
 	ll.Unshift(9)
 
@@ -302,12 +281,7 @@ func ExampleLinkedList_Unshift() {
 }
 
 func TestLinkedList_Unshift_multiple_items(t *testing.T) {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
-	ll.Push(13)
-	ll.Push(14)
-	ll.Push(15)
+	ll := FromValues(10, 11, 12, 13, 14, 15)
 
 	r := ll.Unshift(9)
 
@@ -385,12 +359,7 @@ func TestLinkedList_Shift_one_item(t *testing.T) {
 }
 
 func ExampleLinkedList_Shift() {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
-	ll.Push(13)
-	ll.Push(14)
-	ll.Push(15)
+	ll := FromValues(10, 11, 12, 13, 14, 15)
 
 	r := ll.Shift()
 
@@ -406,12 +375,7 @@ func ExampleLinkedList_Shift() {
 }
 
 func TestLinkedList_Shift_multiple_items(t *testing.T) {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
-	ll.Push(13)
-	ll.Push(14)
-	ll.Push(15)
+	ll := FromValues(10, 11, 12, 13, 14, 15)
 
 	r := ll.Shift()
 
@@ -494,9 +458,7 @@ func TestLinkedList_Get_index_less_than_zero(t *testing.T) {
 }
 
 func TestLinkedList_Get_index_greater_than_length(t *testing.T) {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
+	ll := FromValues(10, 11, 12)
 
 	r := ll.Get(3)
 
@@ -558,9 +520,7 @@ func TestLinkedList_Set_index_less_than_zero(t *testing.T) {
 }
 
 func TestLinkedList_Set_index_greater_than_length(t *testing.T) {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
+	ll := FromValues(10, 11, 12)
 
 	r := ll.Set(3, 10)
 
@@ -570,11 +530,7 @@ func TestLinkedList_Set_index_greater_than_length(t *testing.T) {
 }
 
 func ExampleLinkedList_Insert() {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(13)
-	ll.Push(14)
-	ll.Push(15)
+	ll := FromValues(10, 11, 13, 14, 15)
 
 	r := ll.Insert(2, 12)
 
@@ -628,9 +584,7 @@ func TestLinkedList_Insert_index_less_than_zero(t *testing.T) {
 }
 
 func TestLinkedList_Insert_index_greater_than_length(t *testing.T) {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
+	ll := FromValues(10, 11, 12)
 
 	r := ll.Insert(4, 10)
 
@@ -640,13 +594,7 @@ func TestLinkedList_Insert_index_greater_than_length(t *testing.T) {
 }
 
 func ExampleLinkedList_Remove() {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(121) // will be removed
-	ll.Push(12)
-	ll.Push(13)
-	ll.Push(14)
-	ll.Push(15)
+	ll := FromValues(10, 11, 121, 12, 13, 14, 15)
 
 	r := ll.Remove(2)
 
@@ -664,11 +612,7 @@ func ExampleLinkedList_Remove() {
 func TestLinkedList_Remove_from_start_to_end(t *testing.T) {
 	tests := []int{10, 11, 12, 13, 14, 15}
 
-	ll := &LinkedList{}
-
-	for _, v := range tests {
-		ll.Push(v)
-	}
+	ll := FromValues(tests...)
 
 	for _, v := range tests {
 		r := ll.Remove(0)
@@ -686,11 +630,7 @@ func TestLinkedList_Remove_from_start_to_end(t *testing.T) {
 func TestLinkedList_Remove_from_end_to_start(t *testing.T) {
 	tests := []int{10, 11, 12, 13, 14, 15}
 
-	ll := &LinkedList{}
-
-	for _, v := range tests {
-		ll.Push(v)
-	}
+	ll := FromValues(tests...)
 
 	for i := len(tests) - 1; i >= 0; i-- {
 		r := ll.Remove(ll.Length - 1)
@@ -716,9 +656,7 @@ func TestLinkedList_Remove_index_less_than_zero(t *testing.T) {
 }
 
 func TestLinkedList_Remove_index_greater_than_length(t *testing.T) {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
+	ll := FromValues(10, 11, 12)
 
 	r := ll.Remove(4)
 
@@ -728,12 +666,7 @@ func TestLinkedList_Remove_index_greater_than_length(t *testing.T) {
 }
 
 func ExampleLinkedList_Reverse() {
-	ll := New(10)
-	ll.Push(11)
-	ll.Push(12)
-	ll.Push(13)
-	ll.Push(14)
-	ll.Push(15)
+	ll := FromValues(10, 11, 12, 13, 14, 15)
 
 	ll.Reverse()
 
@@ -747,8 +680,7 @@ func ExampleLinkedList_Reverse() {
 }
 
 func ExampleLinkedList_Reverse_two_items() {
-	ll := New(10)
-	ll.Push(11)
+	ll := FromValues(10, 11)
 
 	ll.Reverse()
 
