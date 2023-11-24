@@ -31,8 +31,7 @@ func (ll LinkedList) String() string {
 // New creates a new LinkedList and sets its first node value.
 func New(value int) *LinkedList {
 	n := &Node{value, nil}
-	ll := &LinkedList{n, n, 1}
-	return ll
+	return &LinkedList{n, n, 1}
 }
 
 func FromValues(values ...int) *LinkedList {
@@ -239,8 +238,9 @@ func (ll *LinkedList) Reverse() {
 
 // Print shows the details of the Linked List on the screen.
 func (ll LinkedList) Print() {
+	fmt.Println(ll.SprintValues())
+
 	if ll.Length > 0 {
-		fmt.Println(ll.SprintValues())
 		fmt.Println("Head:", ll.Head.Value)
 		fmt.Println("Tail:", ll.Tail.Value)
 	}
@@ -252,11 +252,11 @@ func (ll LinkedList) Print() {
 func (ll LinkedList) SprintValues() string {
 	ret := []byte{}
 
-	currentNode := ll.Head
+	curr := ll.Head
 
-	for currentNode != nil {
-		ret = fmt.Append(ret, currentNode.Value, "->")
-		currentNode = currentNode.Next
+	for curr != nil {
+		ret = fmt.Append(ret, curr.Value, "->")
+		curr = curr.Next
 	}
 
 	ret = fmt.Append(ret, "nil")

@@ -14,6 +14,7 @@ It is not supposed to be totally based only on the [JavaScript Data Structures &
     * [Remove duplicates](./linkedlist/remove-duplicates.go)
     * [Binary to decimal](./linkedlist/binary-to-decimal.go)
     * [Reverse between](./linkedlist/reverse-between.go)
+* [Doubly Linked Lists](./doublylinkedlist/doublylinkedlist.go)
 
 ## Run the project
 
