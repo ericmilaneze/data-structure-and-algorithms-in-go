@@ -4,7 +4,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/ericmilaneze/data-structure-and-algorithms-in-go/linkedlist"
+	"github.com/ericmilaneze/data-structures-and-algorithms-in-go/linkedlist"
 )
 
 func main() {
