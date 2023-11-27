@@ -8,7 +8,7 @@ func TestLinkedList_FindKthNodeFromEnd(t *testing.T) {
 	node := ll.FindKthNodeFromEnd(4)
 
 	if node.Value != 3 {
-		t.Error("wrong value\r\nwant: 3\r\ngot:", node.Value)
+		t.Error("wrong value\nwant: 3\ngot:", node.Value)
 	}
 }
 
@@ -18,7 +18,7 @@ func TestLinkedList_FindKthNodeFromEnd_odd_length(t *testing.T) {
 	node := ll.FindKthNodeFromEnd(2)
 
 	if node.Value != 4 {
-		t.Error("wrong value\r\nwant: 4\r\ngot:", node.Value)
+		t.Error("wrong value\nwant: 4\ngot:", node.Value)
 	}
 }
 

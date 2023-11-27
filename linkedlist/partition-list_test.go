@@ -8,7 +8,7 @@ func TestLinkedList_PartitionList_empty(t *testing.T) {
 	ll.PartitionList(0)
 
 	if ll.Length != 0 {
-		t.Error("wrong length\r\nwant: 0\r\ngot:", ll.Length)
+		t.Error("wrong length\nwant: 0\ngot:", ll.Length)
 	}
 }
 
@@ -35,11 +35,11 @@ func TestLinkedList_PartitionList(t *testing.T) {
 		ret := ll.SprintValues()
 
 		if ret != test.want {
-			t.Errorf("wrong return on test \"%s\"\r\nwant: %v\r\ngot: %v", test.name, test.want, ret)
+			t.Errorf("wrong return on test \"%s\"\nwant: %v\ngot: %v", test.name, test.want, ret)
 		}
 
 		if ll.Tail.Value != test.tail {
-			t.Errorf("wrong tail on test \"%s\"\r\nwant: %v\r\ngot: %v", test.name, test.tail, ll.Tail.Value)
+			t.Errorf("wrong tail on test \"%s\"\nwant: %v\ngot: %v", test.name, test.tail, ll.Tail.Value)
 		}
 	}
 }

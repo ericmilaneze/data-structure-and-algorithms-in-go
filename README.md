@@ -50,10 +50,10 @@ The public documentation can be found [here](https://pkg.go.dev/github.com/ericm
 - Add tags following the semantic versioning pattern (vX.X.X, e.g. v0.0.1)
 - Run the following command:
 ```bash
-GOPROXY=proxy.golang.org go list -m github.com/ericmilaneze/data-structure-and-algorithms-in-go@v0.1.0
+GOPROXY="proxy.golang.org" && go list -m github.com/ericmilaneze/data-structure-and-algorithms-in-go@v0.1.0
 
 # if using Windows add SET in front of it:
-# SET GOPROXY=proxy.golang.org go list -m github.com/ericmilaneze/data-structure-and-algorithms-in-go@v0.1.0
+# SET GOPROXY="proxy.golang.org" && go list -m github.com/ericmilaneze/data-structure-and-algorithms-in-go@v0.1.0
 ```
 
 ### Godoc (local)

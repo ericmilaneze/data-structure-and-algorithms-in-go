@@ -22,7 +22,7 @@ func TestLinkedList_BinaryToDecimal(t *testing.T) {
 		r := ll.BinaryToDecimal()
 
 		if r != test.want {
-			t.Errorf("wrong return for \"%s\"\r\nwant: %v\r\ngot: %v", ll.SprintValues(), test.want, r)
+			t.Errorf("wrong return for \"%s\"\nwant: %v\ngot: %v", ll.SprintValues(), test.want, r)
 		}
 	}
 }

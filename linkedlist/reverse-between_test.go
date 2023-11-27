@@ -30,15 +30,15 @@ func TestLinkedList_ReverseBetween(t *testing.T) {
 		r := ll.SprintValues()
 
 		if r != test.want {
-			t.Errorf("wrong result for \"%s\" (m: %v, n: %v)\r\nwant: %s\r\ngot: %s", test.name, test.m, test.n, test.want, r)
+			t.Errorf("wrong result for \"%s\" (m: %v, n: %v)\nwant: %s\ngot: %s", test.name, test.m, test.n, test.want, r)
 		}
 
 		if ll.Tail == nil && test.tail != nil {
-			t.Fatalf("tail shouldn't be nil for \"%s\"\r\nwant: %v\r\ngot: nil", test.name, test.tail)
+			t.Fatalf("tail shouldn't be nil for \"%s\"\nwant: %v\ngot: nil", test.name, test.tail)
 		}
 
 		if ll.Tail != nil && *ll.Tail != *test.tail {
-			t.Errorf("wrong resulting tail for \"%s\"\r\nwant: %v\r\ngot: %v", test.name, *test.tail, *ll.Tail)
+			t.Errorf("wrong resulting tail for \"%s\"\nwant: %v\ngot: %v", test.name, *test.tail, *ll.Tail)
 		}
 	}
 }

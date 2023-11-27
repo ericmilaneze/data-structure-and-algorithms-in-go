@@ -26,11 +26,11 @@ func TestLinkedList_RemoveDuplicates(t *testing.T) {
 		r := ll.SprintValues()
 
 		if r != test.want {
-			t.Errorf("wrong result on test \"%s\"\r\nwant: %s\r\ngot: %s", test.name, test.want, r)
+			t.Errorf("wrong result on test \"%s\"\nwant: %s\ngot: %s", test.name, test.want, r)
 		}
 
 		if ll.Length != test.length {
-			t.Errorf("wrong length on test \"%s\"\r\nwant: %v\r\ngot: %v", test.name, test.length, ll.Length)
+			t.Errorf("wrong length on test \"%s\"\nwant: %v\ngot: %v", test.name, test.length, ll.Length)
 		}
 	}
 }

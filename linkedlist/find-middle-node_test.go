@@ -28,7 +28,7 @@ func TestLinkedList_FindMiddleNode_one_item(t *testing.T) {
 	node := ll.FindMiddleNode()
 
 	if node.Value != 1 {
-		t.Error("wrong return\r\nwant: 1, got:", node.Value)
+		t.Error("wrong return\nwant: 1, got:", node.Value)
 	}
 }
 
@@ -38,7 +38,7 @@ func TestLinkedList_FindMiddleNode_odd_length(t *testing.T) {
 	node := ll.FindMiddleNode()
 
 	if node.Value != 3 {
-		t.Error("wrong return\r\nwant: 3, got:", node.Value)
+		t.Error("wrong return\nwant: 3, got:", node.Value)
 	}
 }
 
@@ -48,6 +48,6 @@ func TestLinkedList_FindMiddleNode_even_length(t *testing.T) {
 	node := ll.FindMiddleNode()
 
 	if node.Value != 4 {
-		t.Error("wrong return\r\nwant: 4, got:", node.Value)
+		t.Error("wrong return\nwant: 4, got:", node.Value)
 	}
 }
