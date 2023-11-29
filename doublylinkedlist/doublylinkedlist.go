@@ -165,6 +165,10 @@ func (dll DoublyLinkedList) Get(index int) *Node {
 	return curr
 }
 
+func (dll *DoublyLinkedList) Set(index, value int) bool {
+	return true
+}
+
 // SprintValues returns the values formatted like nil<-1<->2<->3->nil
 func (dll DoublyLinkedList) SprintValues() string {
 	r := []byte{}

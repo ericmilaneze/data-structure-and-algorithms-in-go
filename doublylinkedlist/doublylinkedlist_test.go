@@ -256,3 +256,43 @@ func TestDoublyLinkedList_Get(t *testing.T) {
 		}
 	}
 }
+
+func TestDoublyLinkedList_Set(t *testing.T) {
+	type want struct {
+		returns bool
+		result  string
+	}
+
+	tests := []struct {
+		name  string
+		items []int
+		index int
+		value int
+		want  want
+	}{
+		{"negative index", []int{1, 2, 3, 4, 5}, -1, 0, want{false, "nil<-1<->2<->3<->4<->5->nil"}},
+		{"index greater than length", []int{1, 2, 3, 4, 5}, 5, 0, want{false, "nil<-1<->2<->3<->4<->5->nil"}},
+		{"set head when index = 0", []int{1, 2, 3, 4, 5}, 0, 10, want{true, "nil<-10<->2<->3<->4<->5->nil"}},
+		{"set tail for index = length -1", []int{1, 2, 3, 4, 5}, 4, 50, want{true, "nil<-1<->2<->3<->4<->50->nil"}},
+		{"middle index", []int{1, 2, 3, 4, 5}, 2, 30, want{true, "nil<-1<->2<->30<->4<->5->nil"}},
+		{"index < length/2", []int{1, 2, 3, 4, 5}, 1, 20, want{true, "nil<-1<->20<->3<->4<->5->nil"}},
+		{"index > length/2", []int{1, 2, 3, 4, 5}, 3, 40, want{true, "nil<-1<->2<->3<->40<->5->nil"}},
+		{"single element", []int{1}, 0, 10, want{true, "nil<-10->nil"}},
+		{"empty list", []int{}, 0, 0, want{false, "nil"}},
+		{"index = length/2", []int{1, 2, 3, 4, 5, 6}, 3, 40, want{true, "nil<-1<->2<->3<->40<->5<->6->nil"}},
+	}
+
+	for _, test := range tests {
+		dll := FromValues(test.items...)
+
+		r := dll.Set(test.index, test.value)
+
+		if r != test.want.returns {
+			t.Errorf("test \"%s\" - wrong return\nwant: %v\ngot: %v", test.name, test.want.returns, r)
+		}
+
+		if dll.SprintValues() != test.want.result {
+			t.Errorf("test \"%s\" - wrong result\nwant: %v\ngot: %v", test.name, test.want.result, dll.SprintValues())
+		}
+	}
+}
