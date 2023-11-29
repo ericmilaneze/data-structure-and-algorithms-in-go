@@ -137,6 +137,34 @@ func (dll *DoublyLinkedList) Shift() *Node {
 	return temp
 }
 
+func (dll DoublyLinkedList) Get(index int) *Node {
+	if index < 0 || index > dll.Length-1 || dll.Length == 0 {
+		return nil
+	}
+
+	if index == 0 {
+		return dll.Head
+	}
+
+	if index == dll.Length-1 {
+		return dll.Tail
+	}
+
+	if index > dll.Length/2 {
+		curr := dll.Tail
+		for i := 0; i < dll.Length-1-index; i++ {
+			curr = curr.Previous
+		}
+	}
+
+	curr := dll.Head
+	for i := 0; i < index; i++ {
+		curr = curr.Next
+	}
+
+	return curr
+}
+
 // SprintValues returns the values formatted like nil<-1<->2<->3->nil
 func (dll DoublyLinkedList) SprintValues() string {
 	r := []byte{}

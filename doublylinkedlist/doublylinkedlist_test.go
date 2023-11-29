@@ -213,3 +213,46 @@ func TestDoublyLinkedList_Shift(t *testing.T) {
 		}
 	}
 }
+
+func TestDoublyLinkedList_Get(t *testing.T) {
+	tests := []struct {
+		name       string
+		items      []int
+		index      int
+		returnsNil bool
+		want       int
+	}{
+		{"negative index", []int{1, 2, 3, 4, 5}, -1, true, 0},
+		{"index greater than length", []int{1, 2, 3, 4, 5}, 5, true, 0},
+		{"return head for index 0", []int{1, 2, 3, 4, 5}, 0, false, 1},
+		{"return tail for index length -1", []int{1, 2, 3, 4, 5}, 4, false, 5},
+		{"middle index", []int{1, 2, 3, 4, 5}, 2, false, 3},
+		{"should start from head for index < length/2", []int{1, 2, 3, 4, 5}, 1, false, 2},
+		{"should start from tail for index > length/2", []int{1, 2, 3, 4, 5}, 3, false, 4},
+		{"single element", []int{1}, 0, false, 1},
+		{"empty list", []int{}, 0, true, 0},
+		{"index = length/2", []int{1, 2, 3, 4, 5, 6}, 3, false, 4},
+	}
+
+	for _, test := range tests {
+		dll := FromValues(test.items...)
+
+		r := dll.Get(test.index)
+
+		if test.returnsNil {
+			if r != nil {
+				t.Errorf("test \"%s\" - was expecting nil", test.name)
+			}
+
+			continue
+		}
+
+		if r == nil {
+			t.Fatalf("test \"%s\" - wasn't expecting nil\nwant: %v\ngot: nil", test.name, test.want)
+		}
+
+		if r.Value != test.want {
+			t.Errorf("test \"%s\" - wrong value returned\nwant: %v\ngot: %v", test.name, test.want, r.Value)
+		}
+	}
+}
