@@ -94,8 +94,11 @@ func (dll *DoublyLinkedList) Pop() *Node {
 	}
 
 	temp := dll.Tail
-	dll.Tail = dll.Tail.Previous
 	dll.Tail.Previous.Next = nil
+	dll.Tail = dll.Tail.Previous
+	dll.Tail.Next = nil
+	temp.Next = nil
+	temp.Previous = nil
 	dll.Length--
 
 	return temp
@@ -201,7 +204,25 @@ func (dll *DoublyLinkedList) Insert(index, value int) bool {
 }
 
 func (dll *DoublyLinkedList) Remove(index int) *Node {
-	return &Node{0, new(Node), new(Node)}
+	if index < 0 || index >= dll.Length {
+		return nil
+	}
+
+	if index == 0 {
+		return dll.Shift()
+	}
+
+	if index == dll.Length-1 {
+		return dll.Pop()
+	}
+
+	node := dll.Get(index)
+	node.Previous.Next = node.Next
+	node.Previous = nil
+	node.Next = nil
+	dll.Length--
+
+	return node
 }
 
 // SprintValues returns the values formatted like nil<-1<->2<->3->nil
