@@ -317,7 +317,7 @@ func TestDoublyLinkedList_Insert(t *testing.T) {
 		{"index = length + 1", []int{1, 2, 3, 4, 5}, 5, 6, want{true, "nil<-1<->2<->3<->4<->5<->6->nil", 1, 6}},
 		{"index = 0", []int{1, 2, 3, 4, 5}, 0, 10, want{true, "nil<-10<->1<->2<->3<->4<->5->nil", 10, 5}},
 		{"index = length -1", []int{1, 2, 3, 4, 5}, 4, 50, want{true, "nil<-1<->2<->3<->4<->50<->5->nil", 1, 5}},
-		{"middle index", []int{1, 2, 3, 4, 5}, 2, 30, want{true, "nil<-1<->30<->2<->3<->4<->5->nil", 1, 5}},
+		{"middle index", []int{1, 2, 3, 4, 5}, 2, 30, want{true, "nil<-1<->2<->30<->3<->4<->5->nil", 1, 5}},
 		{"index < length/2", []int{1, 2, 3, 4, 5}, 1, 20, want{true, "nil<-1<->20<->2<->3<->4<->5->nil", 1, 5}},
 		{"index > length/2", []int{1, 2, 3, 4, 5}, 3, 40, want{true, "nil<-1<->2<->3<->40<->4<->5->nil", 1, 5}},
 		{"single element", []int{1}, 0, 10, want{true, "nil<-10<->1->nil", 10, 1}},

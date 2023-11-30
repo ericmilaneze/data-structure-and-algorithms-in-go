@@ -178,6 +178,25 @@ func (dll *DoublyLinkedList) Set(index, value int) bool {
 }
 
 func (dll *DoublyLinkedList) Insert(index, value int) bool {
+	if index == 0 {
+		dll.Unshift(value)
+		return true
+	}
+
+	if index == dll.Length {
+		dll.Push(value)
+		return true
+	}
+
+	node := dll.Get(index)
+
+	if node == nil {
+		return false
+	}
+
+	node.Previous.Next = &Node{value, node, node.Previous}
+	dll.Length++
+
 	return true
 }
 
