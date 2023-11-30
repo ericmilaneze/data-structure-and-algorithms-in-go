@@ -166,6 +166,14 @@ func (dll DoublyLinkedList) Get(index int) *Node {
 }
 
 func (dll *DoublyLinkedList) Set(index, value int) bool {
+	node := dll.Get(index)
+
+	if node == nil {
+		return false
+	}
+
+	node.Value = value
+
 	return true
 }
 
