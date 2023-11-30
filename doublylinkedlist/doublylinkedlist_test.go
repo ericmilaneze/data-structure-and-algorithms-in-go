@@ -359,3 +359,72 @@ func TestDoublyLinkedList_Insert(t *testing.T) {
 		}
 	}
 }
+
+func TestDoublyLinkedList_Remove(t *testing.T) {
+	type want struct {
+		shouldReturn bool
+		returns      int
+		result       string
+		headValue    int
+		tailValue    int
+	}
+
+	tests := []struct {
+		name  string
+		items []int
+		index int
+		want  want
+	}{
+		{"negative index", []int{1, 2, 3, 4, 5}, -1, want{false, 0, "nil<-1<->2<->3<->4<->5->nil", 1, 5}},
+		{"index greater than length", []int{1, 2, 3, 4, 5}, 10, want{false, 0, "nil<-1<->2<->3<->4<->5->nil", 1, 5}},
+		{"index = length + 1", []int{1, 2, 3, 4, 5}, 5, want{false, 0, "nil<-1<->2<->3<->4<->5->nil", 1, 5}},
+		{"index = 0", []int{1, 2, 3, 4, 5}, 0, want{true, 1, "nil<-2<->3<->4<->5->nil", 2, 5}},
+		{"index = length -1", []int{1, 2, 3, 4, 5}, 4, want{true, 5, "nil<-1<->2<->3<->4->nil", 1, 4}},
+		{"middle index", []int{1, 2, 3, 4, 5}, 2, want{true, 3, "nil<-1<->2<->4<->5->nil", 1, 5}},
+		{"index < length/2", []int{1, 2, 3, 4, 5}, 1, want{true, 2, "nil<-1<->3<->4<->5->nil", 1, 5}},
+		{"index > length/2", []int{1, 2, 3, 4, 5}, 3, want{true, 4, "nil<-1<->2<->3<->5->nil", 1, 5}},
+		{"single element", []int{1}, 0, want{true, 1, "nil", 0, 0}},
+		{"empty list", []int{}, 0, want{false, 0, "nil", 0, 0}},
+		{"index = length/2", []int{1, 2, 3, 4, 5, 6}, 3, want{true, 4, "nil<-1<->2<->3<->5<->6->nil", 1, 6}},
+	}
+
+	for _, test := range tests {
+		dll := FromValues(test.items...)
+
+		r := dll.Remove(test.index)
+
+		if test.want.shouldReturn {
+			if r == nil {
+				t.Fatalf("test \"%s\" - should not return nil\nwant: %v\ngot: nil", test.name, test.want.returns)
+			}
+
+			if r.Value != test.want.returns {
+				t.Errorf("test \"%s\" - wrong return\nwant: %v\ngot: %v", test.name, test.want.returns, r.Value)
+			}
+		} else {
+			if r != nil {
+				t.Errorf("test \"%s\" - should return nil\nwant: nil\ngot: %v", test.name, r.Value)
+			}
+		}
+
+		if dll.SprintValues() != test.want.result {
+			t.Errorf("test \"%s\" - wrong result\nwant: %v\ngot: %v", test.name, test.want.result, dll.SprintValues())
+		}
+
+		if dll.Head == nil {
+			t.Fatal("head shouldn't be nil after inserting a new value")
+		}
+
+		if dll.Head.Value != test.want.headValue {
+			t.Errorf("test \"%s\" - wrong head value\nwant: %v\ngot: %v", test.name, test.want.headValue, dll.Head.Value)
+		}
+
+		if dll.Tail == nil {
+			t.Fatal("head shouldn't be nil after inserting a new value")
+		}
+
+		if dll.Tail.Value != test.want.tailValue {
+			t.Errorf("test \"%s\" - wrong tail value\nwant: %v\ngot: %v", test.name, test.want.tailValue, dll.Tail.Value)
+		}
+	}
+}

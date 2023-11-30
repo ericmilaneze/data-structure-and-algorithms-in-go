@@ -200,6 +200,10 @@ func (dll *DoublyLinkedList) Insert(index, value int) bool {
 	return true
 }
 
+func (dll *DoublyLinkedList) Remove(index int) *Node {
+	return &Node{0, new(Node), new(Node)}
+}
+
 // SprintValues returns the values formatted like nil<-1<->2<->3->nil
 func (dll DoublyLinkedList) SprintValues() string {
 	r := []byte{}
