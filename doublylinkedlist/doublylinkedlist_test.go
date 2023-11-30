@@ -296,3 +296,66 @@ func TestDoublyLinkedList_Set(t *testing.T) {
 		}
 	}
 }
+
+func TestDoublyLinkedList_Insert(t *testing.T) {
+	type want struct {
+		returns   bool
+		result    string
+		headValue int
+		tailValue int
+	}
+
+	tests := []struct {
+		name  string
+		items []int
+		index int
+		value int
+		want  want
+	}{
+		{"negative index", []int{1, 2, 3, 4, 5}, -1, 0, want{false, "nil<-1<->2<->3<->4<->5->nil", 1, 5}},
+		{"index greater than length", []int{1, 2, 3, 4, 5}, 10, 0, want{false, "nil<-1<->2<->3<->4<->5->nil", 1, 5}},
+		{"index = length + 1", []int{1, 2, 3, 4, 5}, 5, 6, want{true, "nil<-1<->2<->3<->4<->5<->6->nil", 1, 6}},
+		{"index = 0", []int{1, 2, 3, 4, 5}, 0, 10, want{true, "nil<-10<->1<->2<->3<->4<->5->nil", 10, 5}},
+		{"index = length -1", []int{1, 2, 3, 4, 5}, 4, 50, want{true, "nil<-1<->2<->3<->4<->50<->5->nil", 1, 5}},
+		{"middle index", []int{1, 2, 3, 4, 5}, 2, 30, want{true, "nil<-1<->30<->2<->3<->4<->5->nil", 1, 5}},
+		{"index < length/2", []int{1, 2, 3, 4, 5}, 1, 20, want{true, "nil<-1<->20<->2<->3<->4<->5->nil", 1, 5}},
+		{"index > length/2", []int{1, 2, 3, 4, 5}, 3, 40, want{true, "nil<-1<->2<->3<->40<->4<->5->nil", 1, 5}},
+		{"single element", []int{1}, 0, 10, want{true, "nil<-10<->1->nil", 10, 1}},
+		{"empty list", []int{}, 0, 1, want{true, "nil<-1->nil", 1, 1}},
+		{"index = length/2", []int{1, 2, 3, 4, 5, 6}, 3, 40, want{true, "nil<-1<->2<->3<->40<->4<->5<->6->nil", 1, 6}},
+	}
+
+	for _, test := range tests {
+		dll := new(DoublyLinkedList)
+
+		for i, v := range test.items {
+			dll.Insert(i, v)
+		}
+
+		r := dll.Insert(test.index, test.value)
+
+		if r != test.want.returns {
+			t.Errorf("test \"%s\" - wrong return\nwant: %v\ngot: %v", test.name, test.want.returns, r)
+		}
+
+		if dll.SprintValues() != test.want.result {
+			t.Errorf("test \"%s\" - wrong result\nwant: %v\ngot: %v", test.name, test.want.result, dll.SprintValues())
+		}
+
+		if dll.Head == nil {
+			t.Fatal("head shouldn't be nil after inserting a new value")
+		}
+
+		if dll.Head.Value != test.want.headValue {
+			t.Errorf("test \"%s\" - wrong head value\nwant: %v\ngot: %v", test.name, test.want.headValue, dll.Head.Value)
+		}
+
+		if dll.Tail == nil {
+			t.Fatal("head shouldn't be nil after inserting a new value")
+		}
+
+		if dll.Tail.Value != test.want.tailValue {
+			t.Errorf("test \"%s\" - wrong tail value\nwant: %v\ngot: %v", test.name, test.want.tailValue, dll.Tail.Value)
+		}
+	}
+}
