@@ -17,9 +17,9 @@ func TestDoublyLinkedList_SwapPairs(t *testing.T) {
 	}{
 		{"empty list", []int{}, want{"nil", 0, 0, 0}},
 		{"one element", []int{1}, want{"nil<-1->nil", 1, 1, 1}},
-		{"two elements", []int{1, 2}, want{"nil<-2<-1->nil", 2, 2, 1}},
-		{"three elements", []int{1, 2, 3}, want{"nil<-2<-1<-3->nil", 2, 2, 3}},
-		{"four elements", []int{1, 2, 3, 4}, want{"nil<-2<-1<-4->3->nil", 2, 2, 3}},
+		{"two elements", []int{1, 2}, want{"nil<-2<->1->nil", 2, 2, 1}},
+		{"three elements", []int{1, 2, 3}, want{"nil<-2<->1<->3->nil", 3, 2, 3}},
+		{"four elements", []int{1, 2, 3, 4}, want{"nil<-2<->1<->4<->3->nil", 4, 2, 3}},
 		{"long list", []int{1, 2, 3, 4, 5, 6, 7, 8, 9}, want{"nil<-2<->1<->4<->3<->6<->5<->8<->7<->9->nil", 9, 2, 9}},
 	}
 
